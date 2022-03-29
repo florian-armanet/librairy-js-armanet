@@ -1,0 +1,68 @@
+/*
+ * [ components / select ]
+ */
+
+// -----------------------------------------------------------------------------
+
+
+// 1. Main
+// ====================================
+.custom-select-container {
+
+}
+
+.custom-select-opener {
+    width: 150px;
+    @apply relative z-1 text-gray-500 bg-white uppercase text-xs p-2 leading-none cursor-pointer border border-gray-500 outline-none transition-fast;
+    white-space: nowrap;
+
+    &:hover {
+        @apply bg-gray-100;
+
+        &:after {
+            transform: translateY(-50%) rotate(90deg);
+        }
+    }
+
+    &:after {
+        font-family: 'Icomoon';
+        content: '\e910';
+        @apply absolute right-0 text-xl bg-transparent transition-fast;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    span {
+        @apply text-center block overflow-hidden leading-normal pt-1;
+    }
+}
+
+.custom-select-panel {
+    background-color: rgba(0, 0, 0, 0.7);
+    @apply z-2;
+}
+
+.custom-select-option {
+    &:hover {
+        @apply cursor-pointer;
+    }
+
+    &.is-selected {
+        &:before {
+            font-family: 'Icomoon';
+            content: '\e913';
+        }
+    }
+
+    &.has-focus {
+        @apply bg-primary-base;
+    }
+}
+
+.custom-select-container.is-open .custom-select-panel {
+    max-height: 500px;
+}
+
+.custom-select-option {
+    @apply text-white;
+}

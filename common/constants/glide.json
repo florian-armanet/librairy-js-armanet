@@ -1,0 +1,20 @@
+{
+    "exampleSlider": {
+        "perView": 3,
+        "autoplay": 3000,
+        "gap": 8,
+        "breakpoints": {
+            "1024": {
+                "perView": 3
+            },
+            "575": {
+                "perView": 2
+            }
+        }
+    },
+    "exampleCarousel": {
+        "type": "carousel",
+        "gap": 0,
+        "autoplay": 5000
+    }
+}

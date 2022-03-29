@@ -1,0 +1,81 @@
+/*
+ * [ components / accordion ]
+ */
+
+// -----------------------------------------------------------------------------
+
+$devices: (
+        xl, lg, sm
+);
+
+.js-accordion {
+    @apply overflow-hidden;
+
+    &.isActive {
+        overflow: initial;
+    }
+
+    @each $device in $devices {
+        &[data-accordion-device="#{$device}-down"] {
+            @screen #{$device} {
+                overflow: initial;
+            }
+        }
+    }
+}
+
+.js-accordion-trigger {
+    @apply relative z-2;
+}
+
+.js-accordion-target {
+    @apply relative;
+    z-index: -1;
+}
+
+.js-accordion i {
+    @apply transition-fast;
+}
+
+.js-accordion-trigger i.Icon-angle-right {
+    @apply inline-block transition-fast w-auto;
+}
+
+.js-accordion.isActive i.Icon-plus {
+    transform: rotate(45deg);
+}
+
+.js-accordion.isActive i.Icon-angle-bottom {
+    transform: rotate(180deg);
+}
+
+.js-accordion.isActive i.Icon-angle-right {
+    transform: rotate(90deg);
+}
+
+.js-accordion-target {
+    @apply relative transition-fast;
+    opacity: 0;
+    min-height: 0 !important;
+
+    @each $device in $devices {
+        .js-accordion[data-accordion-device="#{$device}-down"] & {
+            @screen #{$device} {
+                @apply z-1 opacity-100;
+                //overflow: initial;
+            }
+        }
+    }
+
+    .js-accordion.isActive & {
+        @apply z-1 opacity-100;
+    }
+}
+
+@each $device in $devices {
+    @screen #{$device} {
+        [data-accordion-device="#{$device}-down"] .js-accordion-trigger i {
+            display: none !important;
+        }
+    }
+}

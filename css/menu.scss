@@ -1,0 +1,11 @@
+/*
+ * [ layout / menu ]
+ */
+
+// -----------------------------------------------------------------------------
+
+.js-menu-target, [data-menu-target] {
+    &:not(.isActive) {
+        transform: translateX(100%);
+    }
+}
