@@ -1,0 +1,71 @@
+/*
+ * [ modules / tabs ]
+ *
+ */
+
+// -----------------------------------------------------------------------------
+
+// 1. Main
+// --------------------------------------------------
+[data-tab-trigger] {
+    @apply relative mx-4 font-bold uppercase text-gray-300 transition-fast py-4 cursor-pointer mb-8 lg-down:mb-2;
+
+    &:hover, &.isActive {
+        @apply text-primary-base transition-fast;
+
+        &:before, &:after {
+            @apply w-20 bg-primary-base;
+        }
+    }
+
+    &:hover {
+        @apply text-primary-hover;
+
+        &:before, &:after {
+            @apply text-primary-hover;
+        }
+    }
+
+    &:before, &:after {
+        content: '';
+        @apply absolute absolute-x-center w-0 bg-gray-300 transition-fast;
+        height: 3px;
+    }
+
+    &:before {
+        @apply top-0;
+    }
+
+    &:after {
+        @apply bottom-0;
+    }
+}
+
+[data-tab-target] {
+    transform: translateX(100%);
+    @apply absolute top-0 w-full transition-fast opacity-0;
+
+    &.isActive {
+        @apply opacity-100;
+        transform: translate(0);
+    }
+}
+
+.js-tab-content {
+    @apply relative transition-fast;
+}
+
+
+// 2. Select
+// ----------------------------------------
+.js-tabs-select {
+    -o-appearance: none;
+    -ms-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus {
+        @apply outline-none;
+    }
+}

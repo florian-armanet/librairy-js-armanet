@@ -1,0 +1,30 @@
+/*
+ * [ modules / ticker ]
+ */
+
+// -----------------------------------------------------------------------------
+
+// 1. Main
+// --------------------------------------------------
+@screen lg-down {
+    // List
+    .js-ticker {
+        @apply relative overflow-hidden;
+        @apply m-0 #{'!important'};
+        max-width: 320px;
+    }
+
+    // Item
+    .js-ticker-item {
+        @apply transition-fast absolute opacity-0 flex flex-wrap;
+        top: 50%;
+        transform: translateY(-100%);
+        flex: 0 0 320px;
+        max-width: 320px;
+
+        &:first-child {
+            @apply opacity-100;
+            transform: translateY(-50%);
+        }
+    }
+}
