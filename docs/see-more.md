@@ -1,10 +1,11 @@
 # See more
 
-| Element | Class
-| :--------: | :-----: |
-| Trigger  | `data-see-more-trigger` |
-| Target  | `data-see-more-target` |
-| Nb lines in view  | `data-see-more-lines` |
+|       Element       |          Class          |
+|:-------------------:|:-----------------------:|
+|       Trigger       | `data-see-more-trigger` |
+| Disable (optionnal) | `data-see-more-disable` |
+|       Target        | `data-see-more-target`  |
+|  Nb lines in view   |  `data-see-more-lines`  |
 
 ### HTML
 ``` html
@@ -15,6 +16,10 @@
     <button class="has-underline has-underline--invert text-primary-base"
             data-see-more-trigger="shortDescription">
         {{ 'app.base.see_more'|trans }}
+    </button>
+    <button class="hidden has-underline has-underline--invert text-primary-base"
+            data-see-more-disable="shortDescription">
+        {{ 'app.base.see_less'|trans }}
     </button>
 </div>
 ```

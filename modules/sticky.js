@@ -11,19 +11,16 @@ class Sticky {
         this.isFixed           = false
 
         this.SELECTOR_STICKY_PARENT         = 'js-sticky-parent'
-        this.SELECTOR_OBSERVED_FOR_MUTATION = 'js-sticky-observe-mutation'
 
         this.classesNoFixed      = ['relative']
         this.classesFixed        = []
         this.defaultClassesFixed = ['fixed', 'top-0', 'left-0', 'right-0', '-translateY-100']
 
         this.endPositionStickyParent = document.body.offsetHeight
-        this.elObservedForMutation   = null
 
         this.stickyParent = this.sticky.closest('.' + this.SELECTOR_STICKY_PARENT)
         if (this.stickyParent) {
             this.endPositionStickyParent = this.stickyParent.offsetHeight + positionY(this.stickyParent) - this.sticky.offsetHeight
-            this.elObservedForMutation   = this.stickyParent.querySelector('.' + this.SELECTOR_OBSERVED_FOR_MUTATION)
         }
     }
 
@@ -78,15 +75,13 @@ class Sticky {
     /**
      *
      */
-    observeMutationInDom () {
-        const config   = { attributes: true, childList: true, subtree: true, attributeOldValue: false }
-        const observer = new MutationObserver((mutationsList) => {
-            if ([...mutationsList].length && this.stickyParent) {
-                this.endPositionStickyParent = this.stickyParent.offsetHeight + positionY(this.stickyParent) - this.sticky.offsetHeight
-            }
+    observeBodyResize () {
+        const resizeObserver = new ResizeObserver((entries) => {
+            this.endPositionStickyParent = this.stickyParent.offsetHeight + positionY(this.stickyParent) - this.sticky.offsetHeight
+            this.endPositionSticky       = this.sticky.offsetHeight + positionY(this.sticky)
         })
 
-        observer.observe(this.elObservedForMutation, config)
+        resizeObserver.observe(document.body)
     }
 
     /**
@@ -128,33 +123,31 @@ class Sticky {
     processSticky () {
         this.classesHandler()
         this.fixedSticky()
-        if (this.elObservedForMutation) {
-            this.observeMutationInDom()
-        }
+        this.observeBodyResize()
     }
 
     /**
      *
      */
     init () {
-        const { stickyDevice } = this.sticky.dataset
-        const currentViewport  = stickyDevice ? choiceViewport(stickyDevice) : getViewport().width
+        const stickyDevice    = this.sticky.dataset?.stickyDevice ? this.sticky.dataset.stickyDevice : null
+        const currentViewport = stickyDevice ? choiceViewport(stickyDevice) : getViewport().width
 
         if (stickyDevice && stickyDevice.includes('down')) {
             if (getViewport().width <= currentViewport) {
                 this.processSticky()
             }
+            return
         }
 
         if (stickyDevice && !stickyDevice.includes('down')) {
             if (getViewport().width >= currentViewport) {
                 this.processSticky()
             }
+            return
         }
 
-        if (!stickyDevice) {
-            this.processSticky()
-        }
+        this.processSticky()
     }
 }
 

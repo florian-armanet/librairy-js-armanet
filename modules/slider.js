@@ -1,4 +1,4 @@
-import Glide from '@glidejs/glide/dist/glide.min'
+import Glide from '@glidejs/glide'
 import { Breakpoints, Controls } from '@glidejs/glide/dist/glide.modular.esm'
 import GLIDE_REFS from '../common/constants/glide.json'
 import { getViewport } from '../common/utils/viewport'
@@ -28,6 +28,8 @@ class Slider {
             this.arrowsRelocateContainer = [...document.querySelectorAll('[data-relocate-arrows-target]')]
                 .find(container => container.dataset.relocateArrowsTarget === this.element.dataset.relocateArrowsTrigger)
         }
+
+        this.controls = this.arrowsContainer || this.arrowsRelocateContainer
     }
 
     /**
@@ -85,10 +87,8 @@ class Slider {
         this.instance._o.dragThreshold = false
         this.instance._o.autoplay      = false
 
-        const controls = this.arrowsContainer || this.arrowsRelocateContainer
-
-        if (controls) {
-            controls.classList.add('hidden')
+        if (this.controls) {
+            this.controls.classList.add('hidden')
         }
     }
 
@@ -142,6 +142,11 @@ class Slider {
         this.instance       = new Glide(this.element, optionsMerged)
 
         const nbSlides = this.element.querySelectorAll('.glide__slide').length
+
+        if (this.controls) {
+            this.controls.classList.remove('hidden')
+        }
+
         if (this.instance._o.type === 'slider' && nbSlides <= this.perView()) {
             this.sliderUnavailable()
         }

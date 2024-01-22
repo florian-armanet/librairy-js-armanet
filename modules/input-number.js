@@ -45,6 +45,8 @@ class InputNumber {
      *
      */
     init () {
+        if (!this.input) return;
+
         this.onChange()
         this.onClick()
     }

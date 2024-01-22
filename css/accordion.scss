@@ -9,28 +9,7 @@ $devices: (
 );
 
 .js-accordion {
-    @apply overflow-hidden;
-
-    &.isActive {
-        overflow: initial;
-    }
-
-    @each $device in $devices {
-        &[data-accordion-device="#{$device}-down"] {
-            @screen #{$device} {
-                overflow: initial;
-            }
-        }
-    }
-}
-
-.js-accordion-trigger {
-    @apply relative z-2;
-}
-
-.js-accordion-target {
-    @apply relative;
-    z-index: -1;
+    @apply z-0 relative;
 }
 
 .js-accordion i {
@@ -49,26 +28,24 @@ $devices: (
     transform: rotate(180deg);
 }
 
-.js-accordion.isActive i.Icon-angle-right {
+.js-accordion.isActive .js-accordion-trigger i.Icon-angle-right {
     transform: rotate(90deg);
 }
 
 .js-accordion-target {
-    @apply relative transition-fast;
-    opacity: 0;
+    @apply relative transition-fast overflow-hidden opacity-0;
     min-height: 0 !important;
 
     @each $device in $devices {
         .js-accordion[data-accordion-device="#{$device}-down"] & {
             @screen #{$device} {
-                @apply z-1 opacity-100;
-                //overflow: initial;
+                @apply opacity-100;
             }
         }
     }
 
     .js-accordion.isActive & {
-        @apply z-1 opacity-100;
+        @apply opacity-100;
     }
 }
 

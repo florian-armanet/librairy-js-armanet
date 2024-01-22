@@ -11,17 +11,19 @@ class Modal {
         this.target = document.querySelector(`[data-modal-target=${ modalTrigger }]`) || null
         if (!this.target) return
 
-        this.targetContainer = this.target.querySelector('.js-modal-container')
-        this.targetPositionX = this.target.getBoundingClientRect().x
-        this.buttonClose     = this.target.querySelector('.js-modal-close')
-        this.header          = document.querySelector('.js-header')
+        this.background = document.querySelector(`[data-modal-background=${ modalTrigger }]`) || null
+        if (!this.background) return
+
+        this.backgroundPositionX = this.background.getBoundingClientRect().x
+        this.buttonClose         = this.target.querySelector('.js-modal-close')
+        this.header              = document.querySelector('.js-header')
     }
 
     /**
      *
      */
     close () {
-        removeClass(this.target, this.targetContainer)
+        removeClass(this.target, this.background)
         document.body.parentElement.classList.remove('overflow-hidden')
 
         if (this.header) {
@@ -32,8 +34,8 @@ class Modal {
     /**
      *
      */
-    setWidthTarget () {
-        this.target.style.width = `calc(100vw - ${this.targetPositionX}px)`
+    setWidthBackground () {
+        this.background.style.width = `calc(100vw - ${this.backgroundPositionX}px)`
     }
 
     /**
@@ -43,12 +45,12 @@ class Modal {
         this.trigger.addEventListener('click', (e) => {
             e.preventDefault()
 
-            if (this.targetPositionX > 0) {
-                this.setWidthTarget()
+            if (this.backgroundPositionX > 0) {
+                this.setWidthBackground()
             }
 
-            if (this.target && this.targetContainer) {
-                [this.target, this.targetContainer].forEach(el => {
+            if (this.target && this.background) {
+                [this.target, this.background].forEach(el => {
                     addClass(el)
                     document.body.parentElement.classList.add('overflow-hidden')
 
@@ -58,13 +60,11 @@ class Modal {
                 })
             }
 
-            [this.buttonClose, this.target].forEach(el => {
+            [this.buttonClose, this.background].forEach(el => {
                 el.addEventListener('click', (e) => {
                     this.close()
                 })
             })
-
-            this.targetContainer.addEventListener('click', (e) => e.stopPropagation())
         })
     }
 
@@ -73,7 +73,7 @@ class Modal {
      */
     noModal () {
         this.target.removeAttribute('data-modal-target')
-        this.targetContainer.classList.remove('js-modal-container')
+        this.background.classList.remove('js-modal-container')
         this.buttonClose.classList.add('hidden')
     }
 
@@ -81,7 +81,7 @@ class Modal {
      *
      */
     init () {
-        if (!this.target) return
+        if (!this.target || !this.background) return
 
         const { modalDevice } = this.target.dataset
         const currentViewport = modalDevice ? choiceViewport(modalDevice) : getViewport().width

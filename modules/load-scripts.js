@@ -37,7 +37,10 @@ const buildPromises = scripts => {
             module().then(({ default: d }) => {
                 d ? d(...params) : null
                 resolve()
-            }).catch(() => reject())
+            }).catch((e) => {
+                console.log(e);
+                reject()
+            })
         })
     })
 }

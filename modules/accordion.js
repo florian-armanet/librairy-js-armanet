@@ -4,9 +4,10 @@ import choiceViewport from '../common/utils/choiceViewport'
 
 class Accordion {
     constructor (parent) {
-        this.parent  = parent
-        this.trigger = this.parent.querySelector('.js-accordion-trigger')
-        this.target  = this.parent.querySelector('.js-accordion-target')
+        this.parent            = parent
+        this.trigger           = this.parent.querySelector('.js-accordion-trigger')
+        this.target            = this.parent.querySelector('.js-accordion-target')
+        this.isOpenedByDefault = this.parent.classList.contains('js-accordion-opened')
     }
 
     /**
@@ -40,6 +41,8 @@ class Accordion {
      *
      */
     processAccordion () {
+        if (!this.target || !this.trigger) return
+
         const { accordionDevice } = this.parent.dataset
         const currentViewport     = accordionDevice ? choiceViewport(accordionDevice) : getViewport().width
 
@@ -49,6 +52,10 @@ class Accordion {
             const elHeightWithoutPaddings = this.target.offsetHeight
             const elHeight                = elHeightWithoutPaddings + this.getTotalMarginsY(AllChildren)
             this.target.style.maxHeight   = 0 + 'px'
+
+            if (this.isOpenedByDefault) {
+                toggleClass(this.parent)
+            }
 
             this.checkHeight(elHeight)
 

@@ -2,11 +2,11 @@
  * System of dropdown
  */
 export default () => {
-    const triggers = document.querySelectorAll('[data-click-trigger]')
+    const triggers = document.querySelectorAll('[data-dropdown-trigger]')
 
     ;[...triggers].forEach(trigger => {
-        const { clickTrigger } = trigger.dataset
-        const target = document.querySelector(`[data-click-target="${clickTrigger}"]`)
+        const { dropdownTrigger } = trigger.dataset
+        const target = document.querySelector(`[data-dropdown-target="${dropdownTrigger}"]`)
 
         if (target) {
             /**

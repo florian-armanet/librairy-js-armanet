@@ -4,15 +4,17 @@ You can use multiples modals
 
 <br/>
 
-| Element | Data attribute | Class
-| :--------: | :-----: | :-----: |
-| Trigger | `data-modal-trigger` |
-| Target | `data-modal-target` |
-| Target | `data-modal-device` (optionnal) |
-| Close |  | `js-modal-close` |
+|  Element   |         Data attribute         |      Class       |
+|:----------:|:------------------------------:|:----------------:|
+|  Trigger   |      `data-modal-trigger`      |                  |
+|   Target   |      `data-modal-target`       |                  |
+| Background |    `data-modal-background`     |                  |
+|   Target   |`data-modal-device` (optionnal) |                  |
+|   Close    |                                | `js-modal-close` |
 
 ### HTML
-Add same value at data attributes `data-modal-trigger` 
+
+Add same value at data attributes `data-modal-trigger`
 and `data-modal-target` for a trigger and its target. Don't forget button close.
 
 ``` html
@@ -25,33 +27,35 @@ and `data-modal-target` for a trigger and its target. Don't forget button close.
     </button>
 </section>
 
+<div data-modal-background="exemple1"></div>
+
 <div data-modal-target="exemple1">
-    <div class="js-modal-container">
-        <button class="js-modal-close">
-            <i class="Icon-close ml-4"></i>
-            <span>Fermer</span>
-        </button>
-        <div class="mx-auto" style="background: blue; width: 200px; height: 200px">
-            <p class="text-white">Modal 1</p>
-        </div>
-    </div>
+   <button class="js-modal-close">
+       <i class="Icon-close ml-4"></i>
+       <span>Fermer</span>
+   </button>
+   <div class="mx-auto" style="background: blue; width: 200px; height: 200px">
+       <p class="text-white">Modal 1</p>
+   </div>
 </div>
 
+<div data-modal-background="exemple2"></div>
+
 <div data-modal-target="exemple2" data-modal-device="lg-down">
-    <div class="js-modal-container">
-        <button class="js-modal-close">
-            <i class="Icon-close ml-4"></i>
-            <span>Fermer</span>
-        </button>
-        <div class="mx-auto" style="background: red; width: 200px; height: 200px">
-            <p class="text-white">Modal 2</p>
-        </div>
-    </div>
+   <button class="js-modal-close">
+       <i class="Icon-close ml-4"></i>
+       <span>Fermer</span>
+   </button>
+   <div class="mx-auto" style="background: red; width: 200px; height: 200px">
+       <p class="text-white">Modal 2</p>
+   </div>
 </div>
 ```
 
 ---
+
 #### Options
+
 - `data-modal-device` values :
     - `if no value` : all devices
     - `xl` : >1240
@@ -60,9 +64,11 @@ and `data-modal-target` for a trigger and its target. Don't forget button close.
     - `lg-down` : <1024
     - `sm` : >567
     - `sm-down` : <567
+
 ---
 
-### CSS 
+### CSS
+
 ``` scss
 // 2. Bis
 // -------------------------------------------------------------------

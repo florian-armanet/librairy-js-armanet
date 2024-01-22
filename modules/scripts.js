@@ -21,14 +21,19 @@ export default (params) => [
         name: 'input-number',
     },
     {
+        module: () => import ('../modules/intl-tel-input'),
+        element: document.querySelector('.js-intl-tel-input'),
+        name: 'intl-tel-input',
+    },
+    {
         module: () => import ('../modules/lazyload'),
         element: document.querySelector('.js-lazyload'),
         name: 'lazyload',
     },
     {
-        module: () => import ('../modules/click-handler'),
-        element: document.querySelector('[data-click-trigger]'),
-        name: 'click-handler',
+        module: () => import ('../modules/dropdown'),
+        element: document.querySelector('[data-dropdown-trigger]'),
+        name: 'dropdown',
     },
     {
         module: () => import ('../modules/header-height-mobile'),
@@ -39,6 +44,12 @@ export default (params) => [
         module: () => import ('../modules/height-group'),
         element: document.querySelector('[data-height-group]'),
         name: 'height-group',
+    },
+    {
+        module: () => import ('../modules/left0'),
+        element: document.querySelector('[data-left0]'),
+        name: 'left0',
+        priority: 3,
     },
     {
         module: () => import ('../modules/menu'),

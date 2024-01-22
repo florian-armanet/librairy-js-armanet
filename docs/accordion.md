@@ -1,11 +1,12 @@
 # Accordion
 
-| Element | Class | Data attribute
-| :--------: | :-----: |:-----: |
-| Wrapper  | `js-accordion` | `data-accordion-device` (optional)
-| Trigger  | `js-accordion-trigger` |
-| Target  | `js-accordion-target` |
-| Element stopPropagation (optional)  | `js-accordion-stopPropagation` |
+|              Element               |              Class               | Data attribute
+|:----------------------------------:|:--------------------------------:|:-----: |
+|              Wrapper               |          `js-accordion`          | `data-accordion-device` (optional)
+|              Trigger               |      `js-accordion-trigger`      |
+|               Target               |      `js-accordion-target`       |
+|  Is opened by default (optional)   | `js-accordion-opened` on wrapper |
+| Element stopPropagation (optional) |  `js-accordion-stopPropagation`  |
 
 ### HTML
 Add class `js-accordion` and data attribute

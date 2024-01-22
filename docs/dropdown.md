@@ -1,22 +1,22 @@
-# Click Handler = Dropdown
+# Dropdown = Dropdown
 
-| Element | Data attribute | Class
-| :--------: | :-----: | :-----: |
-| Trigger | `data-click-trigger` |
-| Target | `data-click-target` | `has-trigger-transition`
+| Element |     Data attribute      | Class
+| :--------: |:-----------------------:| :-----: |
+| Trigger | `data-dropdown-trigger` |
+| Target | `data-dropdown-target`  | `has-trigger-transition`
 
 ### HTML
-Add same value at data attributes `data-click-trigger` 
-and `data-click-target`.
+Add same value at data attributes `data-dropdown-trigger` 
+and `data-dropdown-target`.
 
 Add class `has-trigger-transition` at the target.
 
 ``` html
-<div class="Menu__item" data-click-trigger="menu">
+<div class="Menu__item" data-dropdown-trigger="menu">
     Menu item
 </div>
 
-<div class="Menu__submenu has-trigger-transition" data-click-target="menu">
+<div class="Menu__submenu has-trigger-transition" data-dropdown-target="menu">
     <div class="Menu__submenu-item">Submenu item</div>
     <div class="Menu__submenu-item">Submenu item</div>
     <div class="Menu__submenu-item">Submenu item</div>    

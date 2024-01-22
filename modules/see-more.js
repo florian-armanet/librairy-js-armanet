@@ -1,11 +1,16 @@
 import { removeClassByPrefix } from '../common/utils/remove-class-by-prefix'
+import CLASSES from '../common/constants/css-classes'
+import choiceViewport from '../common/utils/choiceViewport'
+import { getViewport } from '../common/utils/viewport'
 
 class SeeMore {
     constructor (target) {
-        this.target  = target
-        this.trigger = [...document.querySelectorAll('[data-see-more-trigger]')]
+        this.target           = target
+        this.trigger          = [...document.querySelectorAll('[data-see-more-trigger]')]
             .find(trigger => trigger.dataset.seeMoreTrigger === this.target.dataset.seeMoreTarget)
-        this.seeMoreLines = this.target.dataset.seeMoreLines
+        this.triggerToDisable = [...document.querySelectorAll('[data-see-more-disable]')]
+            .find(triggerToDisable => triggerToDisable.dataset.seeMoreDisable === this.target.dataset.seeMoreTarget)
+        this.seeMoreLines     = Number(this.target.dataset.seeMoreLines)
     }
 
     /**
@@ -21,27 +26,67 @@ class SeeMore {
     /**
      *
      */
-    cutLines () {
+    hideLines () {
         this.target.classList.add(`line-clamp-${ this.seeMoreLines }`)
     }
 
     /**
      *
      */
-    init () {
-        if (!this.trigger) return;
+    processSeeMore () {
+        if (!this.trigger) return
 
         if (this.seeMoreLines >= this.nbLines()) {
-            this.trigger.classList.add('hidden')
+            this.trigger.classList.add(CLASSES.HIDDEN)
             return
         }
 
-        this.cutLines()
+        this.hideLines()
 
         this.trigger.addEventListener('click', (e) => {
             removeClassByPrefix(this.target, 'line-clamp-')
-            e.currentTarget.classList.add('hidden')
+            this.trigger.classList.add(CLASSES.HIDDEN)
+
+            if (this.triggerToDisable) {
+                this.triggerToDisable.classList.remove(CLASSES.HIDDEN)
+            }
         })
+
+        if (this.triggerToDisable) {
+            this.triggerToDisable.addEventListener('click', (e) => {
+                this.hideLines()
+                this.trigger.classList.remove(CLASSES.HIDDEN)
+
+                this.triggerToDisable.classList.add(CLASSES.HIDDEN)
+            })
+        }
+    }
+
+    init() {
+        const seeMoreDevice = this.target.dataset?.seeMoreDevice ? this.target.dataset.seeMoreDevice : null
+        const currentViewport  = seeMoreDevice ? choiceViewport(seeMoreDevice) : getViewport().width
+
+        if (seeMoreDevice && seeMoreDevice.includes('down')) {
+            if (getViewport().width <= currentViewport) {
+                this.processSeeMore()
+                return
+            }
+
+            this.trigger.classList.add(CLASSES.HIDDEN)
+            return
+        }
+
+        if (seeMoreDevice && !seeMoreDevice.includes('down')) {
+            if (getViewport().width >= currentViewport) {
+                this.processSeeMore()
+                return
+            }
+
+            this.trigger.classList.add(CLASSES.HIDDEN)
+            return
+        }
+
+        this.processSeeMore()
     }
 }
 
