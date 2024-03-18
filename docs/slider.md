@@ -1,6 +1,4 @@
-# Slider
-
-> We use the library of [glide](https://glidejs.com/)
+# Slider (With library of [glide](https://glidejs.com/))
 
 | Element | Data attribute | Class
 | :--------: | :-----: | :-----: |
@@ -35,11 +33,9 @@ reference to file `glide.json`
 
 **Optionnal**: you can also relocate arrows and bullets with data attributes:
 
-arrows: `data-relocate-arrows-trigger="uniqueName"` 
-and `data-relocate-arrows-target="uniqueName"`
+- arrows: `data-relocate-arrows-trigger="uniqueName"` and `data-relocate-arrows-target="uniqueName"`
 
-bullets: `data-relocate-bullets-trigger="uniqueName"`
-and `data-relocate-bullets-target="uniqueName"`
+- bullets: `data-relocate-bullets-trigger="uniqueName"`and `data-relocate-bullets-target="uniqueName"`
 ``` html
 <div class="glide js-init-slider relative" data-slider-ref="slider-test"
     data-relocate-arrows-trigger="uniqueName" data-relocate-bullets-trigger="uniqueName">

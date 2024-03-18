@@ -16,6 +16,6 @@ Add class `js-split-title` on an element
 ***
 
 ### BO
-Wrap parts that you want custom with `_` in the field of the Back Office
+Wrap parts that you want custom with `_` in the field of a CMS Back Office
 
 Example: `Hello _world_ !`

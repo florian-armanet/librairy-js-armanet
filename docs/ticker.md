@@ -3,7 +3,7 @@
 Tickers allows you to display list of elements in succession 
 that is not very important. (ex: reassurance)
 
-> Use mobile : < 1024
+> Available on mobile only
 
 <br/>
 

@@ -1,21 +1,15 @@
 # Overriding JS file
 
-Ajouter une propriété name dans chaque objet (cf `node_modules/asdoriacore/modules/scripts.js`) et qui fait office d'id. 
-Pour override un fichier JS, il suffit juste de renseigner dans `app.js` le même `name` que l'on a dans
-`node_modules/asdoriacore/modules/scripts.js`, en n'oubliant pas de renseigner le nouveau fichier
-(ex: `ton-nouveau-script-slider.js`) et le sélecteur (ex: `.peu-importe`)
+Add a name property to each object to act as an id (cf `/modules/scripts.js`). 
+To override a JS file, all you have to do is enter the following in your js entrypoint of your project the same `name` that we have in `/modules/scripts.js`, don't forget to fill in the new file (ex: `your-new-script-slider.js`) and the selector (ex: `.new-class`)
 
-### Exemple avec le slider:
+### Example with the slider:
 ```js
-import { default as Scripts } from 'asdoriacore/modules/load-scripts'
-// import GLIDE_REFS from './common/constants/glide.json'
-// import MapTheme from './themes/map.json'
+import { default as Scripts } from 'librairy-js-armanet/modules/load-scripts'
 
 document.addEventListener('DOMContentLoaded', async () => {
     await Scripts({
         params: {
-            // slider: [GLIDE_REFS],
-            // map: [MapTheme],
         },
         additionalScripts: [
             {
@@ -39,8 +33,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 element:document.querySelector('.gsap-line-transition'),
             },
             {
-                module: () => import ('./app/ton-nouveau-script-slider'),
-                element:document.querySelector('.peu-importe'),
+                module: () => import ('./app/your-new-script-slider'),
+                element:document.querySelector('.new-class'),
                 name: 'slider',
             },
         ]

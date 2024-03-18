@@ -13,7 +13,11 @@ export default () => {
             const tl = gsap.timeline({ paused: true })
             const { triggerTag } = event.currentTarget.dataset;
 
-            function processFilter (triggerTag) {
+            /**
+             * 
+             * @param {*} triggerTag 
+             */
+            const processFilter = (triggerTag) => {
                 [...triggers].forEach(el => removeClass(el))
                 addClass(trigger)
 

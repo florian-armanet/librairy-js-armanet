@@ -81,29 +81,28 @@ export default [
 
 ```
 
-In `app.js`
+In js entrypoint of your project
 ```js
-import scriptsObject from './common/constants/scripts'
-import { default as Map } from './app/map'
+import { default as Scripts } from 'librairie-js/modules/load-scripts'
+// import { default as Map } from './app/map'
 
-document.addEventListener('DOMContentLoaded', async() => {
-    const readScripts = () => {
-        scriptsObject.forEach(async ({module, element}) => {
-            if (element) {
-                const m = await module()
+(async () => {
+    await Scripts({
+        params: {
+            slider: [GLIDE_REFS],
+            // map: [MapTheme],
+        },
+        additionalScripts: [
+            {
+                module: () => import ('./app/your-script-1'),
+                element: document.querySelector('.js-your-script-1'),
+            },
+            {
+                module: () => import ('./app/your-script-2'),
+                element: document.querySelector('.js-your-script-2'),
+            },
+        ]
+    })
+})()
 
-                if (m.default) {
-                    m.default()
-                }
-            }
-        })
-    }
-
-    try {
-        await Map()
-        await readScripts()
-    } catch (err) {
-        console.error(err)
-    }
-})
 ```

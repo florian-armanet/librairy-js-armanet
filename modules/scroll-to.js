@@ -1,7 +1,7 @@
-export default () => {
-    scrollTo()
-    scrollOnLoad()
-    scrollToTop()
+export default {
+    scrollTo,
+    scrollOnLoad,
+    scrollToTop,
 }
 
 const scrollTo = () => {

@@ -1,6 +1,6 @@
 import intlTelInput from 'intl-tel-input'
 import * as utilScript from 'intl-tel-input/build/js/utils.js'
-import CLASS from 'asdoriacore/common/constants/css-classes'
+import CLASS from 'librairy-js-armanet/common/constants/css-classes'
 
 export default () => {
     const inputs = document.querySelectorAll('.js-intl-tel-input');

@@ -1,12 +1,9 @@
 {
-    "name": "asdoriacore",
+    "name": "librairy-js-armanet",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
     "dependencies": {
         "@glidejs/glide": "^3.4.1",
         "axios": "^1.4.0",
-        "cookieconsent": "^3.1.1",
         "custom-select": "^1.1.15",
         "google-maps": "^4.3.3",
         "intl-tel-input": "^17.0.16",
@@ -17,9 +14,9 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@gitlab.asdoria.org:faasdoria/asdoriacore.git"
+        "url": "https://github.com/florian-armanet/librairy-js-armanet.git"
     },
     "keywords": [],
-    "author": "",
+    "author": "Florian Armanet",
     "license": "ISC"
 }
